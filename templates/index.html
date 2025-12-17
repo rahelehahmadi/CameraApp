@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Camera App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="brand">
+        <img class="brand__icon" src="{{ url_for('static', filename='icons/camera.png') }}" alt="" />
+        <div class="brand__text">
+          <h1>Camera App</h1>
+          <p>Flask + OpenCV</p>
+        </div>
+      </div>
+      <div class="status">
+        <span class="pill {{ 'pill--on' if state.stream_on else 'pill--off' }}">
+          Stream: {{ 'ON' if state.stream_on else 'OFF' }}
+        </span>
+        <span class="pill {{ 'pill--on' if state.recording_on else 'pill--off' }}">
+          Record: {{ 'ON' if state.recording_on else 'OFF' }}
+        </span>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="viewer">
+        <img class="viewer__img" src="{{ url_for('main.video_feed') }}" alt="Video stream" />
+      </section>
+
+      <section class="controls">
+        <form class="controls__form" method="post" action="{{ url_for('main.actions') }}">
+          <button class="btn" type="submit" name="stop" value="Stop/Start">
+            Stop/Start
+          </button>
+
+          <button class="btn" type="submit" name="click" value="Capture">
+            Capture
+          </button>
+
+          <button class="btn {{ 'btn--active' if state.grey_on else '' }}" type="submit" name="grey" value="Grey">
+            Grey
+          </button>
+
+          <button class="btn {{ 'btn--active' if state.negative_on else '' }}" type="submit" name="neg" value="Negative">
+            Negative
+          </button>
+
+          <button class="btn {{ 'btn--active' if state.face_only_on else '' }}" type="submit" name="face" value="Face Only">
+            Face Only
+          </button>
+
+          <button class="btn {{ 'btn--danger' if state.recording_on else '' }}" type="submit" name="rec" value="Start/Stop Recording">
+            Start/Stop Recording
+          </button>
+        </form>
+
+        <div class="help">
+          <h2>راهنما</h2>
+          <ul>
+            <li><strong>Stop/Start</strong>: قطع/وصل استریم</li>
+            <li><strong>Capture</strong>: ذخیره عکس در پوشه <code>shots/</code></li>
+            <li><strong>Grey / Negative / Face Only</strong>: روشن/خاموش کردن فیلترها</li>
+            <li><strong>Start/Stop Recording</strong>: ذخیره ویدیو با نام <code>vid_*.avi</code></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+

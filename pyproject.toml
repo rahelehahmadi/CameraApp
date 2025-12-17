@@ -1,0 +1,12 @@
+[project]
+name = "camera-app"
+version = "0.1.0"
+description = "Camera app with Flask + OpenCV (stream, capture, record, filters)."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "Flask>=2.3",
+  "numpy>=1.24",
+  "opencv-python>=4.8",
+]
+
