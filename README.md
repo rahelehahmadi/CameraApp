@@ -143,4 +143,4 @@ python run.py
   - (اختیاری) تنظیم رزولوشن:
     - `$env:CAMERA_WIDTH=1280; $env:CAMERA_HEIGHT=720; uv run python run.py`
 
-    salam
+    
